@@ -52,14 +52,14 @@ def run_quic_go_xp(nodes, test_name, setup_nets_opts, store_result_in_db_func, *
     comp.run_cmd_on_client(nodes, "rm -rf /tmp/cache_*")
 
     # Run a dummy XP just to get cache info
-    comp.run_cmd_on_client(nodes, "cd /tmp; /root/quic-go/client -c https://42.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
+    comp.run_cmd_on_client(nodes, "cd /tmp; /root/quic-go/client -c https://10.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
 
     file_sizes = kwargs['file_sizes']
     for size in file_sizes:
         print "file size %d" % size
         comp.run_cmd_on_server(nodes, 'dd if=/dev/urandom of=/tmp/random_{size} bs={size} count=1'.format(size=size))
         def run():
-            server_ip = '42.2.1.1'
+            server_ip = '10.2.1.1'
 
             client_cmd = 'cd /tmp; timeout 30 /root/quic-go/client {} -c https://{}:4443/random_{} &> /tmp/log_client.log'.format(multipath, server_ip, size)
             err = comp.run_cmd_on_client(nodes, client_cmd)
@@ -75,7 +75,7 @@ def run_quic_go_xp(nodes, test_name, setup_nets_opts, store_result_in_db_func, *
                 comp.run_cmd_on_client(nodes, "rm -rf /tmp/cache_*")
 
                 # Run a dummy XP just to get cache info
-                comp.run_cmd_on_client(nodes, "cd /tmp; timeout 10 /root/quic-go/client -c https://42.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
+                comp.run_cmd_on_client(nodes, "cd /tmp; timeout 10 /root/quic-go/client -c https://10.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
                 return 0
 
             # Get the file to access it
@@ -108,7 +108,7 @@ def run_quic_go_xp(nodes, test_name, setup_nets_opts, store_result_in_db_func, *
                 comp.run_cmd_on_client(nodes, "rm -rf /tmp/cache_*")
 
                 # Run a dummy XP just to get cache info
-                comp.run_cmd_on_client(nodes, "cd /tmp; timeout 10 /root/quic-go/client -c https://42.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
+                comp.run_cmd_on_client(nodes, "cd /tmp; timeout 10 /root/quic-go/client -c https://10.2.1.1:4443/ploufiplof &> /tmp/log_client.log")
                 return 0
 
             time.sleep(0.02)

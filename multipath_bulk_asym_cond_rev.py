@@ -58,7 +58,7 @@ def run_multipath_xp(nodes, test_name, setup_nets_opts, store_result_in_db_func,
             # It's safer to restart each time actually...
             comp.run_cmd_on_server(nodes, 'pkill picoquicdemo')
             comp.run_cmd_on_server(nodes, ["sh", "-c", "'cd ~/picoquic; nohup ./picoquicdemo {} {} -p 4443 2>&1 > /tmp/log_server.log'".format(server_logs, plugins)], daemon=True)
-            server_ip = '42.2.1.1'
+            server_ip = '10.2.1.1'
 
             # Empty the buffers and let the server start quietly
             time.sleep(0.2)

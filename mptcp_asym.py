@@ -63,7 +63,7 @@ def run_multipath_xp(nodes, test_name, setup_nets_opts, store_result_in_db_func,
         comp.run_cmd_on_server(nodes, 'dd if=/dev/zero of=random bs=1K count={}'.format(size // 1000))
 
         def run():
-            server_ip = '42.2.1.1'
+            server_ip = '10.2.1.1'
 
             # Empty the buffers and let the server start quietly
             time.sleep(0.2)
